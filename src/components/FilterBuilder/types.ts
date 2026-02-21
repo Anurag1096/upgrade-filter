@@ -5,7 +5,23 @@ export type FieldName = keyof typeof fieldRegistry
 
 export type FieldType= typeof fieldRegistry[FieldName]["type"]
 
-export type FilterValue= string | number | Date | null
+export type Range = {
+  min: number;
+  max: number;
+};
+
+type CurrencyRange = {
+  min: number;
+  max: number;
+  currency: string;
+};
+
+type MultiSelect={
+   selected: string[]
+}
+
+export type FilterValue= string | number | Date | boolean | CurrencyRange | Range | MultiSelect | null
+
 
 export  interface FilterRule{
     id:string,

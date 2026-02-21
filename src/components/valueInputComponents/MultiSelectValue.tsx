@@ -11,14 +11,25 @@ export const MultiSelectInput = ({ value = [], onChange, options }: Props) => (
   <TextField
     select
     size="small"
-    SelectProps={{ multiple: true }}
-    value={value}
-    onChange={(e) => onChange(e.target.value)}
+    value={Array.isArray(value) ? value : []}
+    onChange={(e) =>
+      onChange(
+        typeof e.target.value === "string"
+          ? e.target.value.split(",")
+          : (e.target.value as string[])
+      )
+    }
+    slotProps={{
+      select: {
+        multiple: true,
+      },
+    }}
   >
-    {options.map((opt: string) => (
+    {options.map((opt) => (
       <MenuItem key={opt} value={opt}>
         {opt}
       </MenuItem>
     ))}
   </TextField>
+
 );

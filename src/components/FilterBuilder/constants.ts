@@ -15,7 +15,11 @@ export const fieldRegistry = {
   status: {
     label: "Status",
     type: "singleSelect",
-    options: ["Active", "Pending", "Blocked"],
+    options: [
+        { label: "Open", value: "open" },
+    { label: "Closed", value: "closed" },
+    { label: "Pending", value: "pending" }
+        ],
   },
   tags: { label: "Tags", type: "multiSelect", options: ["A", "B", "C"] },
   isActive: { label: "Is Active", type: "boolean" },

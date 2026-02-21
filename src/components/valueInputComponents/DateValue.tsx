@@ -13,13 +13,13 @@ const DateRangeInput = ({ value = {start:"",end:""}, onChange }: Props) => (
     <TextField
       type="date"
       size="small"
-      value={value.start || ""}
+      value={value?.start || ""}
       onChange={(e) => onChange({ ...value, start: e.target.value })}
     />
     <TextField
       type="date"
       size="small"
-      value={value.end || ""}
+      value={value?.end || ""}
       onChange={(e) => onChange({ ...value, end: e.target.value })}
     />
   </Stack>

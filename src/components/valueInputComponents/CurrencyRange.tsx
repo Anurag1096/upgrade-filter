@@ -16,14 +16,24 @@ export const CurrencyRangeValueInput = ({ value = {min:0,max:0}, onChange }: Pro
       type="number"
       size="small"
       placeholder="Min"
-      value={value.min || 0}
+       InputProps={{
+        inputProps: {
+          min: 0, // Set the minimum value
+        }
+      }}
+      value={value?.min || ""}
       onChange={(e) => onChange({ ...value, min: Number(e.target.value) })}
     />
     <TextField
       type="number"
       size="small"
       placeholder="Max"
-      value={value.max || 0}
+        InputProps={{
+        inputProps: {
+          min: 1, // Set the minimum value
+        }
+      }}
+      value={value?.max || ""}
       onChange={(e) => onChange({ ...value, max: Number(e.target.value) })}
     />
   </Stack>

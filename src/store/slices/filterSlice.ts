@@ -7,7 +7,7 @@ interface FilterState {
 }
 
 const initialState: FilterState = {
-  rules: [{ id: "3", field: null, operator: "<", value: null }],
+  rules: [],
 };
 
 const filterSlice = createSlice({

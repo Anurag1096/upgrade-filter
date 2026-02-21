@@ -11,7 +11,7 @@ export const valueComponentMap = {
   text: TextValue,
   number: NumberValue,
   date: DateValue,
-  singleselect: SelectValue,
+  singleSelect: SelectValue,
   multiSelect: MultiSelect,
   currency: CurrencyRange,
   boolean: BooleanInput,
