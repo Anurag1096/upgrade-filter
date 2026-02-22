@@ -61,20 +61,129 @@ Filtered Employee Data
 ### Project Components
 
 ## Folder structure
-src
-│
+``` 
+│src/
 ├── components/
-│   └── DynamicFilter/
-|   └── FilterBuilder/
+|   ├── DynamicFilter/
+│   ├── FilterBuilder/
+│   ├── ValueInputComponents/
+│   ├── ValueRenderer/
 │   └── Table/
-|   └── ValueInputComponents/
-|   └── ValueRender/
-|── data/
-|   └── genrateTable.ts
+├── data/
 ├── store/
-│   ├── employeeSlice.ts
-│   └── filterSlice.ts
-|---- utils/
+├── utils/
 
 
-## 
+```
+## DynamicFilter
+This is the parent component that composes the FilterBuilder and Table components.
+
+# Responsibilities:
+
+-Generates employee data on mount (using useEffect)
+
+-Stores the data in Redux (employeeSlice)
+
+-Uses a selector to retrieve filtered data based on active rules
+
+-Passes the filtered data to the Table component for rendering
+
+## FilterBuilder
+The core component responsible for building filter rules.
+
+# Responsibilities:
+
+-Allows users to create, update, and delete filter rules
+
+-Manages rule state in Redux (filterSlice)
+
+-Dynamically renders UI based on the Field Registry Pattern
+
+-Uses type definitions to ensure rule consistency
+
+-Displays appropriate operators and value inputs based on field type
+
+## Table
+Displays employee data received from DynamicFilter.
+
+#Features:
+
+-Renders filtered data
+
+-Supports column-based sorting
+
+-Allows ascending and descending order per column
+
+
+## ValueInputComponent
+Provides a map operator for different input components used based on the field type.
+
+## ValueRender
+It figures out which input componet to render based on the type of field eg- text,number,range etc.
+
+
+## data
+
+Handles creation of the data using faker js function , the data returned is in json format and the exported function can be used to genrate variable row's of data.
+
+## store
+
+
+## ValueInputComponents
+
+Provides input components based on field type.
+
+# Examples:
+
+Text input
+
+Number input
+
+Date picker
+
+Select / Multi-select
+
+Range input
+
+This is implemented using a type-to-component mapping.
+
+## ValueRenderer
+
+Responsible for selecting and rendering the correct input component.
+
+# Flow:
+
+Field → Field Type → Component Map → Render Input
+
+This keeps the UI dynamic and scalable.
+
+## data
+
+Handles data generation using Faker.js.
+
+# Features:
+
+Generates employee data in JSON format
+
+Supports configurable number of rows
+
+Exported utility function for data creation
+
+## Store
+
+Contains Redux state management.
+
+employeeSlice
+
+Stores original employee dataset
+
+filterSlice
+
+Stores filter rules created by the user
+
+Filtering is performed using a memoized selector, ensuring efficient recalculation only when data or rules change.
+
+
+
+
+
