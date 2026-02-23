@@ -191,6 +191,14 @@ Stores filter rules created by the user
 
 Filtering is performed using a memoized selector, ensuring efficient recalculation only when data or rules change.
 
+## Improvements
+# Initial
+-Adding harder validation check for input component's 
+-Debounce redux state update when  value is entered on text and number input
+-Better UI styling,accessibility and responsiveness.
+-Adding (OR) logic support when filtering(The above component uses (AND))
+
+
 
 
 

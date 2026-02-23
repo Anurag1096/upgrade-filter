@@ -25,7 +25,7 @@ export const FilterRowRenderer = ({ rule }: Props) => {
         displayEmpty
         onChange={(e) =>
           dispatch(
-            updateRule({ id: rule.id, changes: { field: e.target.value as keyof typeof fieldRegistry } }),
+            updateRule({ id: rule.id, changes: { field: e.target.value as keyof typeof fieldRegistry,operator:"",value:"" } }),
           )
         }
       >
@@ -72,6 +72,7 @@ export const FilterRowRenderer = ({ rule }: Props) => {
       {rule.field && rule.operator && (
         <ValueRenderer
           field={rule.field}
+          operator={rule.operator}
           value={rule.value || ""}
           onChange={(val: FilterValue) =>
             dispatch(

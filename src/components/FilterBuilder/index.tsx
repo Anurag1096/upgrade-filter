@@ -13,7 +13,6 @@ export const FilterBuilderComponent = () => {
         <h1>Filters</h1>
         <Button onClick={() => dispatch(addRule())}>Add Rule</Button>
         <Button onClick={() => dispatch(clearAllRule())}>Clear All</Button>
-        <Button onClick={() => console.log(RuleStateArray)}>Apply</Button>
         <Box
           sx={{
             maxHeight: 150,

@@ -1,5 +1,4 @@
 export const fieldRegistry = {
-  id: { label: "ID", type: "number" },
   name: { label: "Name", type: "text" },
   email: { label: "Email", type: "text" },
   department: {
@@ -10,15 +9,36 @@ export const fieldRegistry = {
   role: {
     label: "Role",
     type: "singleSelect",
-    options: ["Manager", "Developer", "Designer", "Analyst", "Intern"],
+    options: [
+      "Junior Developer",
+      "Senior Developer",
+      "Tech Lead",
+      "Manager",
+      "QA Engineer",
+      "Product Manager",
+      "Designer",
+      "DevOps Engineer",
+    ],
   },
   salary: { label: "Salary", type: "number" },
-  joinDate: { label: "Joining Date", type: "date" },
   isActive: { label: "Active Status", type: "boolean" },
   skills: {
     label: "Skills",
     type: "multiSelect",
-    options: ["JavaScript", "TypeScript", "Python", "React", "NodeJS", "UI/UX"],
+    options: [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "GraphQL",
+      "Python",
+      "AWS",
+      "Docker",
+      "Kubernetes",
+      "MongoDB",
+      "PostgreSQL",
+      "Java",
+      "Next.js",
+    ],
   },
   addressCity: { label: "City", type: "text" },
   addressState: { label: "State", type: "text" },
@@ -27,13 +47,23 @@ export const fieldRegistry = {
   lastReview: { label: "Last Review Date", type: "date" },
   performanceRating: { label: "Performance Rating", type: "number" },
 } as const;
+// for single and range input rendering
+export const operatorConfig = {
+  equals: { valueMode: "single" },
+  greaterThan: { valueMode: "single" },
+  lessThan: { valueMode: "single" },
+  gte: { valueMode: "single" },
+  lte: { valueMode: "single" },
+
+  between: { valueMode: "range" },
+} as const;
 
 export const operatorTypeMap = {
   text: ["equals", "contains", "startsWith", "endsWith", "doesNotContain"],
   number: ["equals", "greaterThan", "lessThan", "gte", "lte", "between"],
-  date: ["equals", "before", "after", "between"], // single or range
-  boolean: ["is", "isNot"],
+  date: ["equals", "before", "after", "between"],
+  boolean: ["is"],
   singleSelect: ["is", "isNot"],
   multiSelect: ["in", "notIn"],
-  currency: ["equals", "greaterThan", "lessThan", "gte", "lte", "between"], 
+  currency: ["equals", "greaterThan", "lessThan", "gte", "lte", "between"],
 } as const;

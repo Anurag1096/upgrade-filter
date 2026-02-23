@@ -11,6 +11,11 @@ export default function NumberValue({ value, onChange }: Props) {
       type="number"
       size="small"
       value={value || ""}
+        InputProps={{
+          inputProps: {
+            min: 0,
+          },
+        }}
       onChange={(e) => onChange(Number(e.target.value))}
     />
   );

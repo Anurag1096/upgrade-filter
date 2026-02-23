@@ -1,3 +1,5 @@
-export const booleanOperators: Record<string, (f: any, v: any) => boolean> = {
+import type { BooleanOperators } from "./types";
+
+export const booleanOperators:BooleanOperators = {
   is: (f, v) => f === v,
 };

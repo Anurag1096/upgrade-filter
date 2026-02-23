@@ -12,7 +12,6 @@ export const FilteredData=createSelector([
   // check if rules array is not empty 
 
   const validRules=getValidRules(rules)
-  console.log("valid rules list",validRules)
 if(!validRules ||  validRules.length === 0) return employeeData
 //check if rules is valid
 // if valid then procede with filtering

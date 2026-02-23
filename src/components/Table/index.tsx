@@ -28,7 +28,6 @@ interface Props {
 // In future we can go one level more deep and add another component which will only render
 // the sorted data 
 export default function TableRendering({ data }: Props) {
-    console.log("whole data", data)
   const [orderBy, setOrderBy] = useState<keyof Employee | "city">("id");
   const [order, setOrder] = useState<Order>("asc");
   const TableRowData = [
