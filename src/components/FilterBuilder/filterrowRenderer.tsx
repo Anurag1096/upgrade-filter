@@ -5,6 +5,9 @@ import { useAppDispatch } from "../../store/hooks";
 import type { FilterRule, FilterValue } from "./types";
 import { getOperator } from "../../utils/getOperator";
 import { ValueRenderer } from "../ValueRender";
+import { useMemo } from "react";
+import { useState } from "react";
+import { myDebounce } from "../../utils/myDebounce";
 //will call all the slice function inside the onChagne
 type Props = {
   rule: FilterRule;
@@ -12,6 +15,12 @@ type Props = {
 
 export const FilterRowRenderer = ({ rule }: Props) => {
   const dispatch = useAppDispatch();
+ const [localValue,setLocalValue]=useState<FilterValue>(rule.value)
+  const debouncedStateUpdate = useMemo(() => {
+    return myDebounce((id: string, val: FilterValue) => {
+      dispatch(updateRule({ id: id, changes: { value: val } }));
+    }, 500);
+  }, [dispatch]);
 
   const operators = getOperator(rule.field as keyof typeof fieldRegistry);
 
@@ -20,12 +29,18 @@ export const FilterRowRenderer = ({ rule }: Props) => {
       {/* FIELD SELECT */}
       <Select
         size="small"
-        
         value={rule.field || ""}
         displayEmpty
         onChange={(e) =>
           dispatch(
-            updateRule({ id: rule.id, changes: { field: e.target.value as keyof typeof fieldRegistry,operator:"",value:"" } }),
+            updateRule({
+              id: rule.id,
+              changes: {
+                field: e.target.value as keyof typeof fieldRegistry,
+                operator: "",
+                value: "",
+              },
+            }),
           )
         }
       >
@@ -74,14 +89,11 @@ export const FilterRowRenderer = ({ rule }: Props) => {
           field={rule.field}
           operator={rule.operator}
           value={rule.value || ""}
-          onChange={(val: FilterValue) =>
-            dispatch(
-              updateRule({
-                id: rule.id,
-                changes: { value: val },
-              }),
-            )
-          }
+          localValue={localValue}
+          setLocalValue={setLocalValue}
+          onChange={(val: FilterValue) => {
+            setLocalValue(val) 
+            debouncedStateUpdate(rule.id, val)}}
         />
       )}
       <Button onClick={() => dispatch(removeRule({ id: rule.id }))}>X</Button>
