@@ -23,6 +23,6 @@ export const dateRangeSchema = z.object({
       end: z.date(),
     })
     .refine((data) => data.start < data.end, {
-      message: "The start date cannot be greater than end date",
+      message: "The Start date cannot be greater than End date",
     }),
 });
