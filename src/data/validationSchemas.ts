@@ -15,7 +15,17 @@ export const numberRangeSchema = z.object({
 export const dateSingleSchema = z.object({
   value: z.date(),
 });
+export const  booleanSchema=z.object({
+  value:z.boolean(),
+})
 
+export const sigleSelect=z.object({
+  value:z.string()
+})
+
+export const multiSelectSchema=z.object({
+  value:z.array(z.string())
+})
 export const dateRangeSchema = z.object({
   value: z
     .object({
