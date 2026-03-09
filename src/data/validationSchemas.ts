@@ -19,7 +19,7 @@ export const  booleanSchema=z.object({
   value:z.boolean(),
 })
 
-export const sigleSelect=z.object({
+export const singleSelectSchema=z.object({
   value:z.string()
 })
 
@@ -36,3 +36,17 @@ export const dateRangeSchema = z.object({
       message: "The Start date cannot be greater than End date",
     }),
 });
+
+
+export const validationSchemaMapper={
+  text:textInputSchema,
+  number:numberInputSchema,
+  date:dateSingleSchema,
+  singleSelect:singleSelectSchema,
+  multiSelect:multiSelectSchema,
+  boolean:booleanSchema
+}
+export const rangeValidationMapper={
+  date:dateRangeSchema,
+  number:numberRangeSchema
+}
